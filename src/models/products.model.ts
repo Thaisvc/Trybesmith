@@ -19,11 +19,11 @@ export default class ProductsModel {
     return { id: insertId, ...product };
   }
 
-  public async getproductAll(): Promise<IProductsID> {
-    const [result] = await this.connection.execute<IProductsID & RowDataPacket[]>(
+  public async getproductAll(): Promise<IProductsID[]> { // COMO E ASSICRONA VAI ME RETORNA UMA PROMISSE  Promise<IProductsID[] COM IProductsID Q É UM ARRAY
+    const [result] = await this.connection.execute<IProductsID[] & RowDataPacket[]>(
       'SELECT * FROM Trybesmith.Products',
     );
 
-    return result;
+    return result; // POSSO TIRAR execute<IProductsID[] & RowDataPacket[]> E DIZER Q O RETORNO VAI SER RESULT AS IProductsID DIZENDO Q ELE VAI RETORNA DADOS COM A ESTRUTURA DE IProductsID  NAO E A MELHOR OPÇ USAMOS O GENERIC
   }
 }
