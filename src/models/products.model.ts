@@ -8,12 +8,12 @@ export default class ProductsModel {
 
   public async create(product: IProducts): Promise<IProductsID> {
     const { name, amount } = product;
-    console.log(name, amount);
+    // console.log(name, amount);
     const [result] = await this.connection.execute<ResultSetHeader>(
       'INSERT INTO Trybesmith.Products (name, amount) VALUES (?,?)',
       [name, amount],
     );
-    console.log(result);
+    // console.log(result);
    
     const { insertId } = result;
     return { id: insertId, ...product };

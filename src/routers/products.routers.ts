@@ -4,7 +4,7 @@ import ControllerProduct from '../controllers/product.controller';
 const router = Router();
 const controllerProduct = new ControllerProduct();
 
-router.post('/products', controllerProduct.createNewProduct.bind(controllerProduct));
-router.get('/products', controllerProduct.getAllProduct.bind(controllerProduct));
+router.post('/', controllerProduct.createNewProduct.bind(controllerProduct));
+router.get('/', controllerProduct.getAllProduct.bind(controllerProduct));
 
 export default router;
