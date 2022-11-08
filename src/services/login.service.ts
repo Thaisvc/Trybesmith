@@ -12,14 +12,15 @@ export default class LoginService {
 
   async validateLogin(login: ILogin): Promise<IUser> {
     const { password } = login;
-    const user: IUser | undefined = await this.modelLogin.login(login);
+    const [user] = await this.modelLogin.login(login);
+    
     if (!user || user.password !== password) {
       throw new HttpException(401, 'Username or password invalid');
     }
     return user;
   }
 
-  public async loginBody(loginData: ILogin) {
+  public async loginBody(loginData: ILogin): Promise<string> {
     await validation(shema.shemaLogin, loginData);
     const user = await this.validateLogin(loginData);
     const token = this.Token.tokenCreate(user);
