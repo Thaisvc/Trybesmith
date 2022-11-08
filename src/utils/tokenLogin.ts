@@ -1,10 +1,10 @@
 import jsonwebtoken from 'jsonwebtoken';
-import { ILogin } from '../interfaces/login.interfece';
+import { IUser } from '../interfaces/login.interfece';
 
 export default class TokenLogin {
   public jwt = jsonwebtoken;
 
-  public tokenCreate(data:ILogin) {
+  public tokenCreate(data:IUser) {
     console.log(data);
     
     const payload = { username: data.username, password: data.password }; 

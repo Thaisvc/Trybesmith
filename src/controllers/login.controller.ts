@@ -7,7 +7,7 @@ export default class LoginController {
 
   public async authLogin(req: Request<object, object, ILogin>, res: Response) {
     const { body } = req;
-    const authenticate = await this.serviceLogin.loginBody(body);
-    res.status(200).json({ authenticate });
+    const token = await this.serviceLogin.loginBody(body);
+    res.status(200).json({ token });
   }
 }

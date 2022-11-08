@@ -7,11 +7,12 @@ export default class LoginModel {
 
   public async login(user:ILogin):Promise<any> {
     const { username, password } = user;
-    const [result] = await this.connection.execute<(
+    const [[result]] = await this.connection.execute<(
     ILogin[] & RowDataPacket[])>(
       ' SELECT * FROM Trybesmith.Users WHERE username = ?  AND password = ?',
       [username, password],
       );
+      
     return result;
   }
 }
