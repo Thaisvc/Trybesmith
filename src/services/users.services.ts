@@ -1,7 +1,7 @@
 import UserModel from '../models/users.model';
 import { IUsers } from '../interfaces/users.interfeces';
 import HttpException from '../utils/http.exception';
-import GenerateToken from '../utils/tokenGerate';
+import GenerateToken from '../utils/tokenGerateNewUser';
 
 export default class UserService {
   public userModel = new UserModel();
