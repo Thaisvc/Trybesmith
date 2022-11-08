@@ -3,7 +3,7 @@ import { ILogin, IUser } from '../interfaces/login.interfece';
 import HttpException from '../utils/http.exception';
 import GenerateToken from '../utils/tokenLogin';
 import validation from '../validation/validate';
-import shema from '../validation/schemaLogin';
+import { shemaLogin } from '../validation/schema';
 
 export default class LoginService {
   public modelLogin = new ModelLogin();
@@ -21,7 +21,7 @@ export default class LoginService {
   }
 
   public async loginBody(loginData: ILogin): Promise<string> {
-    await validation(shema.shemaLogin, loginData);
+    await validation(shemaLogin, loginData);
     const user = await this.validateLogin(loginData);
     const token = this.Token.tokenCreate(user);
     return token;
