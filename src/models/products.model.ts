@@ -26,4 +26,18 @@ export default class ProductsModel {
 
     return result; // POSSO TIRAR execute<IProductsID[] & RowDataPacket[]> E DIZER Q O RETORNO VAI SER RESULT AS IProductsID DIZENDO Q ELE VAI RETORNA DADOS COM A ESTRUTURA DE IProductsID  NAO E A MELHOR OPÇ USAMOS O GENERIC
   }
+
+  public async update(userId: number, productId: number): Promise<number | boolean> {
+    const [result] = await this.connection.execute<ResultSetHeader>(
+      'UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?', 
+      [productId, userId],
+    );
+
+    const { affectedRows } = result;
+    if (affectedRows > 0) {
+      return affectedRows;
+    }
+
+    return false;
+  }
 }

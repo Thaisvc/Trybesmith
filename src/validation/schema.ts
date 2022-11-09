@@ -16,4 +16,9 @@ const schemaUser: Joi.Schema = Joi.object({
   level: Joi.number().min(1).integer().required(),
   password: Joi.string().min(8).required(),
 });
-export { shemaLogin, shemaProducts, schemaUser };
+
+const shemaOrders: Joi.Schema = Joi.object({
+  productsIds: Joi.array().items(Joi.number().required(), Joi.number().required()),
+});
+
+export { shemaLogin, shemaProducts, schemaUser, shemaOrders };
